@@ -15,10 +15,9 @@ export default function App() {
   const [duration, setDuration] = useState("");
   const BUSSTOP_URL = "https://arrivelah2.busrouter.sg/?id=83139";
 
-  var ms = duration,
-    min = Math.floor((ms / 1000 / 60) << 0),
+  var ms = duration;
+    min = Math.floor((ms / 1000 / 60) << 0);
     sec = Math.floor((ms / 1000 / 60) % 60);
-
 
 
   function loadBusStopData() {
@@ -67,13 +66,13 @@ export default function App() {
         )}
       </Text>
 
-      {/* <Text>Bus Arrival Time:</Text> */}
+      <Text>Bus Arrival Time:</Text>
       {/* if loading is true, show loading */}
       {/* if loading is false, show loaded */}
 
-      {/* <Text style={styles.arrivalTime}> */}
-        {/* {loading ? <ActivityIndicator color="blue" size="large" /> : arrival} */}
-      {/* </Text> */}
+      <Text style={styles.arrivalTime}>
+        {loading ? <ActivityIndicator color="blue" size="large" /> : arrival}
+      </Text>
 
       <TouchableOpacity onPress={loadBusStopData} style={styles.button}>
         <Text style={{ color: "white" }}>Refresh!</Text>
