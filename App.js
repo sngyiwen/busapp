@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useEffect, useState } from "react";
+import { borderLeftColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -13,6 +14,12 @@ export default function App() {
   const [busNumber, setBusNumber] = useState("");
   const [duration, setDuration] = useState("");
   const BUSSTOP_URL = "https://arrivelah2.busrouter.sg/?id=83139";
+
+  var ms = duration,
+    min = Math.floor((ms / 1000 / 60) << 0),
+    sec = Math.floor((ms / 1000 / 60) % 60);
+
+
 
   function loadBusStopData() {
     setLoading(true);
@@ -43,10 +50,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Bus Arriving in:</Text>
-      <Text style={styles.arrivalTime}>
-        {loading ? <ActivityIndicator color="blue" size="large" /> : duration}
-      </Text>
+      <Text style={styles.title}>My Buss App</Text>
 
       <Text>Service Number:</Text>
 
@@ -54,16 +58,25 @@ export default function App() {
         {loading ? <ActivityIndicator color="blue" size="large" /> : busNumber}
       </Text>
 
-      <Text>Bus Arrival Time:</Text>
+      <Text>Bus Arriving in:</Text>
+      <Text style={styles.arrivalTime}>
+        {loading ? (
+          <ActivityIndicator color="blue" size="large" />
+        ) : (
+          min + " minutes " + sec + " seconds"
+        )}
+      </Text>
+
+      {/* <Text>Bus Arrival Time:</Text> */}
       {/* if loading is true, show loading */}
       {/* if loading is false, show loaded */}
 
-      <Text style={styles.arrivalTime}>
-        {loading ? <ActivityIndicator color="blue" size="large" /> : arrival}
-      </Text>
+      {/* <Text style={styles.arrivalTime}> */}
+        {/* {loading ? <ActivityIndicator color="blue" size="large" /> : arrival} */}
+      {/* </Text> */}
 
       <TouchableOpacity onPress={loadBusStopData} style={styles.button}>
-        <Text>Refresh!</Text>
+        <Text style={{ color: "white" }}>Refresh!</Text>
       </TouchableOpacity>
     </View>
   );
@@ -72,17 +85,22 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#C2E1FF",
     alignItems: "center",
     justifyContent: "center",
   },
   button: {
-    backgroundColor: "green",
+    backgroundColor: "blue",
     padding: 10,
     margin: 10,
   },
   arrivalTime: {
     fontSize: 20,
+    paddingBottom: 15,
+  },
+  title: {
+    fontSize: 30,
+    paddingBottom: 20,
   },
 });
 //second git  commit test
