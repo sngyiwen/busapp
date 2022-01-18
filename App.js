@@ -37,7 +37,7 @@ export default function App() {
 
   useEffect(() => {
     // loadBusStopData();
-    const interval = setInterval(loadBusStopData, 1000);
+    const interval = setInterval(loadBusStopData, 600000);
     return () => clearInterval(interval);
   }, []);
 
@@ -62,7 +62,7 @@ export default function App() {
         {loading ? <ActivityIndicator color="blue" size="large" /> : arrival}
       </Text>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity onPress={loadBusStopData} style={styles.button}>
         <Text>Refresh!</Text>
       </TouchableOpacity>
     </View>
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
-//second commit test
+//second git  commit test
